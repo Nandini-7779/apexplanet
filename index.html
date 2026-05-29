@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First HTML Page</title>
+    <!-- Add this line below -->
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+</head>
+<body>
+    
+</section>
+
+    <!-- HEADER -->
+    <header>
+        <h1>Welcome to My Website</h1>
+        <nav>
+            <a href="#">Home</a> |
+            <a href="#">About</a> |
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <!-- MAIN SECTION -->
+    <section>
+        <article>
+            <h2>About Me</h2>
+            <p>I am learning HTML5 as part of my internship!</p>
+        </article>
+    </section>
+    <!-- FORM -->
+<section>
+    <h2>Contact Form</h2>
+    <form>
+        <!-- Text Input -->
+        <label>Name:</label>
+        <input type="text" placeholder="Enter your name">
+        <br><br>
+
+        <!-- Email Input -->
+        <label>Email:</label>
+        <input type="email" placeholder="Enter your email">
+        <br><br>
+
+        <!-- Radio Buttons -->
+        <label>Gender:</label>
+        <input type="radio" name="gender" value="male"> Male
+        <input type="radio" name="gender" value="female"> Female
+        <br><br>
+
+        <!-- Checkbox -->
+        <label>Hobbies:</label>
+        <input type="checkbox"> Coding
+        <input type="checkbox"> Reading
+        <input type="checkbox"> Gaming
+        <br><br>
+
+        <!-- Dropdown -->
+        <label>City:</label>
+        <select>
+            <option>Hyderabad</option>
+            <option>Mumbai</option>
+            <option>Delhi</option>
+        </select>
+        <br><br>
+
+        <!-- Textarea -->
+        <label>Message:</label><br>
+        <textarea rows="4" cols="40" 
+        placeholder="Write your message..."></textarea>
+        <br><br>
+
+        <!-- Submit Button -->
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+<!-- MULTIMEDIA -->
+<section>
+    <h2>Multimedia</h2>
+
+    <!-- Video -->
+    <h3>Video</h3>
+    <video width="320" height="240" controls>
+        <source src="video.mp4" type="video/mp4">
+        Your browser does not support video.
+    </video>
+
+    <!-- Audio -->
+    <h3>Audio</h3>
+    <audio controls>
+        <source src="audio.mp3" type="audio/mpeg">
+        Your browser does not support audio.
+    </audio>
+
+    <!-- iFrame - YouTube Embed -->
+    <h3>YouTube Video</h3>
+    <iframe width="320" height="240"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ">
+    </iframe>
+</section>
+<!-- TABLE -->
+<section>
+    <h2>My Skills Table</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Skill</th>
+                <th>Level</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>HTML</td>
+                <td>Beginner</td>
+                <td>Learning ⏳</td>
+            </tr>
+            <tr>
+                <td>CSS</td>
+                <td>Beginner</td>
+                <td>Coming Next 🔜</td>
+            </tr>
+            <tr>
+                <td>JavaScript</td>
+                <td>Beginner</td>
+                <td>Coming Soon 🔜</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+<!-- FLEXBOX CARDS -->
+<section>
+    <h2 style="text-align:center; padding:20px;">My Skills</h2>
+    <div class="cards-container">
+        <div class="card">
+            <h3>HTML</h3>
+            <p>Structure of web pages</p>
+        </div>
+        <div class="card">
+            <h3>CSS</h3>
+            <p>Styling web pages</p>
+        </div>
+        <div class="card">
+            <h3>JavaScript</h3>
+            <p>Making pages interactive</p>
+        </div>
+    </div>
+    <!-- GRID -->
+<section>
+    <h2 style="text-align:center; padding:20px;">
+        Grid Layout
+    </h2>
+    <div class="grid-container">
+        <div class="grid-item">Box 1</div>
+        <div class="grid-item">Box 2</div>
+        <div class="grid-item">Box 3</div>
+        <div class="grid-item">Box 4</div>
+        <div class="grid-item">Box 5</div>
+        <div class="grid-item">Box 6</div>
+    </div>
+</section>
+
+<!-- DOM MANIPULATION -->
+<section>
+    <h2>JavaScript DOM</h2>
+    <p id="demo">This text will change!</p>
+    <br>
+    <button onclick="changeText()">Change Text</button>
+    <button onclick="changeColor()">Change Color</button>
+</section>
+
+<!-- EVENT HANDLING -->
+<section>
+    <h2>Event Handling</h2>
+
+    <!-- Click Event -->
+    <button id="clickBtn">Click Me!</button>
+    <br><br>
+
+    <!-- Keyup Event -->
+    <input type="text" id="typeBox" 
+    placeholder="Type something...">
+    <p id="typeOutput"></p>
+    <br>
+
+    <!-- Change Event -->
+    <label>Pick Background Color:</label>
+    <select id="colorPicker">
+        <option value="#f0f0f0">Default</option>
+        <option value="#ffeeba">Yellow</option>
+        <option value="#c3e6cb">Green</option>
+        <option value="#bee5eb">Blue</option>
+    </select>
+</section>
+<!-- FORM VALIDATION -->
+<section>
+    <h2>Form Validation</h2>
+
+    <label>Name:</label><br>
+    <input type="text" id="valName" 
+    placeholder="Enter name">
+    <br><br>
+
+    <label>Email:</label><br>
+    <input type="email" id="valEmail" 
+    placeholder="Enter email">
+    <br><br>
+
+    <label>Password:</label><br>
+    <input type="password" id="valPassword" 
+    placeholder="Min 6 characters">
+    <br><br>
+
+    <button onclick="validateForm()">Submit</button>
+</section>
+
+<!-- TODO LIST -->
+<section>
+    <h2>My Todo List</h2>
+    <input type="text" id="todoInput" 
+    placeholder="Enter a task...">
+    <button onclick="addTodo()">Add Task ➕</button>
+    <br><br>
+    <ul id="todoList"></ul>
+</section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Copyright 2026 - My Website</p>
+    </footer>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nandini Yarramreddy | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink: #0e0e0e;
+      --paper: #f5f2ed;
+      --accent: #b5572a;
+      --accent-light: #e8c9b8;
+      --muted: #6b6460;
+      --line: #d8d2ca;
+      --white: #ffffff;
+      --card-bg: #faf8f5;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.4;
+    }
+
+    /* ── NAVIGATION ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(245,242,237,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.4rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      gap: 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-text { animation: fadeUp 1s ease both; }
+
+    .hero-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .hero-label::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-name strong {
+      font-weight: 600;
+      display: block;
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+      color: var(--muted);
+      margin: 1.4rem 0 2.4rem;
+      max-width: 420px;
+      line-height: 1.8;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      padding: 0.8rem 2rem;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    .btn-primary:hover { background: #9a4520; transform: translateY(-2px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      padding: 0.8rem 2rem;
+      border: 1px solid var(--ink);
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.25s, color 0.25s, transform 0.2s;
+    }
+
+    .btn-outline:hover { background: var(--ink); color: var(--white); transform: translateY(-2px); }
+
+    .hero-visual {
+      animation: fadeUp 1s 0.3s ease both;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 2.4rem;
+      max-width: 340px;
+      width: 100%;
+      position: relative;
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: 8px; left: 8px;
+      right: -8px; bottom: -8px;
+      border: 1px solid var(--accent-light);
+      z-index: -1;
+    }
+
+    .avatar-block {
+      width: 80px;
+      height: 80px;
+      background: var(--ink);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      color: var(--white);
+      font-weight: 600;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-card p.role { color: var(--accent); font-size: 0.8rem; letter-spacing: 0.06em; margin-bottom: 1.4rem; }
+
+    .stat-row {
+      display: flex;
+      gap: 1.4rem;
+      border-top: 1px solid var(--line);
+      padding-top: 1.2rem;
+      margin-top: 0.8rem;
+    }
+
+    .stat { text-align: center; }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-label { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem; }
+
+    .contact-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 1rem;
+    }
+
+    .contact-row a { color: var(--muted); text-decoration: none; }
+    .contact-row a:hover { color: var(--accent); }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 6rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.2rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+      align-self: center;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--white);
+      max-width: 100%;
+      padding: 6rem 0;
+    }
+
+    #about .inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-body {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .about-body p + p { margin-top: 1.2rem; }
+
+    .about-body strong { color: var(--ink); }
+
+    .strengths-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .strength-item {
+      padding: 1.2rem 1.4rem;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .strength-item:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+    .strength-item::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--accent);
+    }
+
+    .strength-item h4 {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── EXPERIENCE ── */
+    .timeline {
+      position: relative;
+      padding-left: 2.5rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 4px; bottom: 0;
+      width: 1px;
+      background: var(--line);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .timeline-item.visible { opacity: 1; transform: translateX(0); }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.5rem;
+      top: 6px;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--paper);
+      outline: 1px solid var(--accent);
+    }
+
+    .timeline-date {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-role {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-company {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .timeline-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .timeline-points li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .timeline-points li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--white); max-width: 100%; padding: 6rem 0; }
+    #skills .inner { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
+
+    .skills-categories {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .skill-category h3 {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .skill-tag {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 0.45rem 0.9rem;
+      font-size: 0.8rem;
+      font-weight: 400;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      cursor: default;
+    }
+
+    .skill-tag:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--white);
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      padding: 2rem;
+      position: relative;
+      transition: transform 0.25s, box-shadow 0.25s;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.25s;
+    }
+
+    .project-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+    }
+
+    .project-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--accent-light);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .project-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-tech span {
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 0.2rem 0.6rem;
+    }
+
+    .project-link {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .project-link:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ── EDUCATION ── */
+    #education { background: var(--white); max-width: 100%; padding: 6rem 0; }
+    #education .inner { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
+
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .edu-card {
+      padding: 2rem;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .edu-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .edu-card:hover::after { transform: scaleX(1); }
+
+    .edu-year {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+    }
+
+    .edu-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .edu-card .institution {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .edu-score {
+      display: inline-block;
+      background: var(--ink);
+      color: var(--white);
+      padding: 0.3rem 0.8rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── CERTIFICATIONS ── */
+    .cert-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cert-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      padding: 1.4rem 1.8rem;
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .cert-item:hover { border-color: var(--accent); transform: translateX(6px); }
+
+    .cert-icon {
+      width: 36px; height: 36px;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+      color: var(--white);
+    }
+
+    .cert-item h4 { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.2rem; }
+    .cert-item p { font-size: 0.8rem; color: var(--muted); }
+
+    /* ── ACTIVITIES ── */
+    #activities { background: var(--white); max-width: 100%; padding: 6rem 0; }
+    #activities .inner { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
+
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+    }
+
+    .activity-card {
+      padding: 1.8rem;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      text-align: center;
+      transition: transform 0.25s, background 0.25s;
+    }
+
+    .activity-card:hover { background: var(--ink); color: var(--white); transform: translateY(-4px); }
+    .activity-card:hover p { color: #aaa; }
+
+    .activity-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+
+    .activity-card h4 {
+      font-size: 0.88rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+
+    .activity-card p { font-size: 0.78rem; color: var(--muted); }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--ink);
+      color: var(--white);
+      max-width: 100%;
+      padding: 6rem 0;
+    }
+
+    #contact .inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    #contact .section-title { color: var(--white); }
+    #contact .section-num { color: var(--accent-light); }
+    #contact .section-line { background: rgba(255,255,255,0.15); }
+
+    .contact-intro {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.9;
+      margin-top: 2rem;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contact-detail-icon {
+      width: 40px; height: 40px;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+
+    .contact-detail-text a,
+    .contact-detail-text span {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      display: block;
+    }
+
+    .contact-detail-text a:hover { color: var(--accent-light); }
+
+    .contact-detail-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 0.1rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    footer span { color: var(--accent); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 2rem; }
+      .nav-links { gap: 1.4rem; }
+      #hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; gap: 3rem; }
+      .hero-visual { display: none; }
+      section { padding: 4rem 2rem; }
+      #about .inner, #contact .inner { grid-template-columns: 1fr; gap: 2.5rem; padding: 0 2rem; }
+      .skills-categories, .projects-grid, .edu-grid, .activities-grid { grid-template-columns: 1fr; }
+      #skills .inner, #education .inner, #activities .inner { padding: 0 2rem; }
+      .strengths-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a class="nav-logo" href="#hero">NY<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-text">
+    <div class="hero-label">Available for Opportunities</div>
+    <h1 class="hero-name">
+      Nandini
+      <strong>Yarramreddy</strong>
+    </h1>
+    <p class="hero-tagline">
+      Third-year Computer Science Engineering student with a passion for software development, web technologies, and building meaningful digital experiences.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="avatar-block">NY</div>
+      <h3>Nandini Yarramreddy</h3>
+      <p class="role">Full Stack Developer · CSE Student</p>
+      <div class="contact-row">
+        <a href="mailto:nandiniyarramreddy77@gmail.com">nandiniyarramreddy77@gmail.com</a>
+        <span>+91 9059608586</span>
+        <a href="https://www.linkedin.com/in/nandini-yarramreddy-2305yar" target="_blank">LinkedIn Profile →</a>
+      </div>
+      <div class="stat-row">
+        <div class="stat">
+          <div class="stat-num">8.88</div>
+          <div class="stat-label">CGPA</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2+</div>
+          <div class="stat-label">Internships</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Projects</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="about">
+  <div class="inner">
+    <div>
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">About Me</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="about-body">
+        <p>I am a <strong>motivated and enthusiastic Computer Science Engineering student</strong> at University College of Engineering, JNTUK, currently in my third year with a CGPA of 8.88.</p>
+        <p>My passion lies in <strong>software development and emerging technologies</strong>. I have hands-on experience building responsive web applications through internships and personal projects, specialising in full-stack development using HTML, CSS, JavaScript, and backend integrations.</p>
+        <p>Beyond coding, I am an active <strong>leader and coordinator</strong> across multiple clubs — from a coding clan to communication and language clubs — demonstrating my commitment to both technical and interpersonal growth.</p>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;margin-bottom:1.2rem;font-weight:600;">Core Strengths</h3>
+      <div class="strengths-grid">
+        <div class="strength-item"><h4>Hardworking Nature</h4></div>
+        <div class="strength-item"><h4>Positive Thinking</h4></div>
+        <div class="strength-item"><h4>Adaptable & Flexible</h4></div>
+        <div class="strength-item"><h4>Team Building</h4></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-date">Sep 2025 – Present</div>
+      <div class="timeline-role">Full Stack Developer Intern</div>
+      <div class="timeline-company">SparkGenX Private Limited</div>
+      <ul class="timeline-points">
+        <li>Developed web application features using frontend and backend technologies</li>
+        <li>Implemented SMTP-based email OTP authentication system</li>
+        <li>Collaborated with development team to enhance UI and backend functionality</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Apr 2025 – Jul 2025</div>
+      <div class="timeline-role">Full Stack Developer Intern</div>
+      <div class="timeline-company">Savory Minds</div>
+      <ul class="timeline-points">
+        <li>Built responsive web pages using HTML, CSS, and JavaScript</li>
+        <li>Developed interactive UI components for improved user experience</li>
+        <li>Improved overall website usability and performance</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<div id="skills">
+  <div class="inner">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-categories">
+      <div class="skill-category">
+        <h3>Frontend</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">HTML5</span>
+          <span class="skill-tag">CSS3</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Bootstrap</span>
+          <span class="skill-tag">CSS Flexbox</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3>Programming</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">C Programming</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">Python</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3>Other</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">SMTP Integration</span>
+          <span class="skill-tag">Responsive Design</span>
+          <span class="skill-tag">UI Development</span>
+          <span class="skill-tag">Full Stack Dev</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Projects</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <h3>Restaurant Website</h3>
+      <p>A responsive restaurant website with mobile-friendly layout, intuitive navigation, and polished UI using Bootstrap components.</p>
+      <div class="project-tech">
+        <span>HTML</span><span>CSS</span><span>Bootstrap</span>
+      </div>
+      <a class="project-link" href="https://vizagrestaurant.ccbp.tech/" target="_blank">View Live →</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <h3>Movie Page Website</h3>
+      <p>A responsive movie browsing platform with interactive carousels, structured movie listings, and an engaging mobile-first UI.</p>
+      <div class="project-tech">
+        <span>HTML</span><span>CSS</span><span>Flexbox</span><span>Bootstrap</span>
+      </div>
+      <a class="project-link" href="https://moviepagedeep.ccbp.tech/" target="_blank">View Live →</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">03</div>
+      <h3>Email OTP System</h3>
+      <p>An SMTP-based automated email OTP verification system with secure OTP generation and a complete email delivery workflow.</p>
+      <div class="project-tech">
+        <span>SMTP</span><span>Backend</span><span>Security</span>
+      </div>
+      <span style="font-size:0.75rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;">Private Repository</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<div id="education">
+  <div class="inner">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Education</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-year">Aug 2023 – 2027</div>
+        <h3>B.Tech — Computer Science Engineering</h3>
+        <div class="institution">University College of Engineering, JNTUK</div>
+        <span class="edu-score">CGPA: 8.88</span>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">Jun 2021 – May 2023</div>
+        <h3>Intermediate (MPC)</h3>
+        <div class="institution">Oxford Junior College</div>
+        <span class="edu-score">97.2%</span>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">May 2020 – Apr 2021</div>
+        <h3>Secondary School Certificate</h3>
+        <div class="institution">Andhra High School</div>
+        <span class="edu-score">98.9%</span>
+      </div>
+    </div>
+
+    <!-- Certifications below education -->
+    <div style="margin-top:3.5rem;">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;margin-bottom:1.8rem;">Certifications</h3>
+      <div class="cert-list">
+        <div class="cert-item">
+          <div class="cert-icon">🎓</div>
+          <div>
+            <h4>Fullstack Web Development Workshop</h4>
+            <p>Gained hands-on experience designing and developing scalable full-stack applications.</p>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">📊</div>
+          <div>
+            <h4>Tata Group GenAI Powered Data Analytics</h4>
+            <p>Job Simulation via Forage — explored AI-driven analytics applications.</p>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">🔐</div>
+          <div>
+            <h4>Deloitte Australia Cyber Job Simulation</h4>
+            <p>Completed on Forage — June 2025. Hands-on cybersecurity problem-solving tasks.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTIVITIES -->
+<div id="activities">
+  <div class="inner">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Extracurriculars</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="activities-grid">
+      <div class="activity-card">
+        <div class="activity-icon">💻</div>
+        <h4>Phoenix Code Clan</h4>
+        <p>Representative of the Coding Club at UCEN_JNTUK</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon">🗣️</div>
+        <h4>Anglo Club</h4>
+        <p>Coordinator of the Communication Club at UCEN_JNTUK</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon">🪔</div>
+        <h4>Sangam Club</h4>
+        <p>Coordinator of the Hindi Language Club at UCEN_JNTUK</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact">
+  <div class="inner">
+    <div>
+      <div class="section-header">
+        <span class="section-num">07</span>
+        <h2 class="section-title">Contact</h2>
+        <div class="section-line"></div>
+      </div>
+      <p class="contact-intro">
+        I'm actively looking for internship and full-time opportunities. If you'd like to discuss a role, project, or just connect — feel free to reach out. I'd love to hear from you.
+      </p>
+    </div>
+    <div>
+      <div class="contact-details" style="margin-top:5.8rem;">
+        <div class="contact-detail">
+          <div class="contact-detail-icon">✉</div>
+          <div class="contact-detail-text">
+            <div class="contact-detail-label">Email</div>
+            <a href="mailto:nandiniyarramreddy77@gmail.com">nandiniyarramreddy77@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📞</div>
+          <div class="contact-detail-text">
+            <div class="contact-detail-label">Phone</div>
+            <span>+91 9059608586</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">in</div>
+          <div class="contact-detail-text">
+            <div class="contact-detail-label">LinkedIn</div>
+            <a href="https://www.linkedin.com/in/nandini-yarramreddy-2305yar" target="_blank">nandini-yarramreddy-2305yar</a>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📍</div>
+          <div class="contact-detail-text">
+            <div class="contact-detail-label">Location</div>
+            <span>Narasaraopet, Andhra Pradesh</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Crafted by <span>Nandini Yarramreddy</span> · 2025 · CSE @ JNTUK
+</footer>
+
+<script>
+  // Scroll reveal for timeline items and project cards
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.timeline-item, .project-card').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Staggered delay for project cards
+  document.querySelectorAll('.project-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 0.12}s`;
+  });
+
+  // Staggered delay for timeline items
+  document.querySelectorAll('.timeline-item').forEach((item, i) => {
+    item.style.transitionDelay = `${i * 0.15}s`;
+  });
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section, [id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    document.querySelectorAll('#hero, #about, #experience, #skills, #projects, #education, #activities, #contact').forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 120) {
+        current = sec.id;
+      }
+    });
+    navLinks.forEach(link => {
+      link.style.color = link.getAttribute('href') === `#${current}` ? 'var(--accent)' : '';
+    });
+  });
+</script>
+
+</body>
+</html>
